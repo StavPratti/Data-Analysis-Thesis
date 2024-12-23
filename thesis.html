@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbnb Data Analysis Thesis</title>
+    <link rel="stylesheet" href="/thesis.css">
+</head>
+<body>
+    <h1>Airbnb Data Analysis</h1>
+    <div class="intro">
+        <h3>My thesis focuses on the analysis and visualization of data extracted from the Airbnb platform, specifically related to properties across four major regions of Greece: Athens, Thessaloniki, Crete, and the islands of the Southern Aegean. The result of this work is the design of two distinct dashboards: one strategic dashboard for the Ministry of Finance and one operational dashboard for real estate investors. The primary goal is to monitor fluctuations in real estate prices.</h3>
+        <h3>For the implementation of this design, I analyzed various CSV files provided by Airbnb, focusing on data regarding property listings, prices, availability, and ratings. The columns to be included in the database tables were selected based on the needs of the two end users.</p>
+        <p>Tools used:</h3>
+            <ul>
+            <li><strong>SQL Server Management Studio (SSMS)</strong></li>
+            <li><strong>Tableau</strong></li>
+            </ul>
+            <footer id="location">Athens, 2023</footer>    
+    </div>  
+    <div class="name">
+        <p>By Stavroula Pratti</p>
+    </div>
+    <div class="warehouse">
+        <h3><strong>Chapter 1: Data Warehouse Creation</strong></h3>
+        <ol>  
+            <li><strong>Database Selection:</strong>
+                <p>For this project, I chose Microsoft SQL Server Management Studio due to its comprehensive features for data management. After comparing it with alternatives such as PostgreSQL and MongoDB, SSMS was found to be the optimal choice for relational data analysis.</p>
+            </li> 
+            <li><strong>Data Preparation:</strong>
+                <p>The data was sourced from Airbnb's publicly available CSV files. After downloading, issues with non-displaying Greek characters were resolved by saving the files in UTF-8 format. Unnecessary columns were removed in SSMS using SQL queries.</p>
+            </li>    
+            <li><strong>Data Loading:</strong>
+                <p>The "Airbnb Listings Greece" database was created in SSMS, and the CSV files were imported, optimizing column data types and handling null values for consistency.</p>
+            </li>    
+            <li><strong>Data Cleaning:</strong>
+                <p>Non-essential columns (such as reviewer names) were removed. Columns were renamed for clarity (e.g., `id` was renamed to `listing_id`) to ensure consistency across tables.</p> 
+            </li>     
+            <li><strong>Table Unification:</strong>
+                <p>Using the `UNION ALL` operator, regional data was consolidated into three main tables: `calendar`, `listings`, and `reviews`, allowing for a comprehensive analysis of the data.</p>
+            </li>    
+            <li><strong>Fact and Dimension Tables:</strong>
+                <p>The Data Warehouse was structured with clear separations between fact and dimension tables:</p>
+                <ul>
+                    <li>Fact Tables: Contain numerical metrics
+                        <ul>
+                            <li><strong>FactReviews</strong></li>
+                            <li><strong>FactCalendar</strong></li>
+                            <li><strong>FactListings</strong></li>
+                        </ul>
+                    </li>
+                    <li>Dimension Tables: Define descriptive data
+                        <ul>
+                            <li><strong>DimHost</strong></li>
+                            <li><strong>DimLocation</strong></li>
+                            <li><strong>DimPropertyType</strong></li>
+                            <li><strong>DimRoomType</strong></li>
+                        </ul>
+                    </li>
+                </ul>         
+                <p>Null values were replaced with default values (e.g., `0`, `1900-01-01`, etc.) and unique IDs were generated for the dimensions using the `IDENTITY` property.</p> 
+            </li>    
+            <li><strong>Verification and Optimization:</strong>
+                <p>Primary keys and relationships were verified to ensure data integrity. Additionally, large files and null replacements were optimized for better performance.</p>  
+            </li>
+        </ol>
+    </div>   
+    <div class="video">
+        <iframe width="800" height="500" src="https://www.youtube.com/embed/T9g50mwtDMc?si=Xcis72pKEOP3OxYu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>    
+    <div class="tableau">
+        <h3><strong>Chapter 2: Tableau Implementation</strong></h3>
+        <p>In my effort to create the dashboards, I used all the tables analyzed in the previous chapter, with the primary focus on the FactListings table. I utilized many different fields from these tables, particularly for the operational dashboard, as it needed to be more detailed. I also made an effort to incorporate various types of charts, each tailored to the specific needs of the analysis. Some of the charts used include pies, bar charts, Gantt charts, treemaps, maps, tables, scatter plots, area charts, or a combination of these. Below, a detailed explanation is provided on which tables and fields were used for each chart.</p>
+        <p>Using the various capabilities offered by Tableau, I was able to effectively visualize and analyze the data. Key features such as clusters, slicers, groups, hierarchies, forecast models, and calculated fields were utilized to enhance the data exploration and insights generation process. These tools allowed for:</p>
+        <ul>
+            <li><strong>Clusters:</strong> Identifying natural groupings within the dataset to segment listings based on key attributes.</li>
+            <li><strong>Slicers:</strong> Enabling interactive filtering to focus on specific subsets of data, facilitating a more detailed and targeted analysis.</li>
+            <li><strong>Groups:</strong> Categorizing related data points into meaningful groups to simplify analysis and visualization.</li>
+            <li><strong>Hierarchies:</strong> Structuring data in a hierarchical manner to allow for drill-downs, providing deeper insights across different levels of granularity.</li>
+            <li><strong>Forecast Models:</strong> Applying advanced forecasting techniques to predict future trends in listing prices, availability, and other relevant metrics.</li>
+            <li><strong>Calculated Fields:</strong> Creating custom metrics and aggregations to enhance understanding of the data and support more sophisticated analyses.</li>
+        </ul>
+        <div class="video">
+            <iframe width="800" height="500" src="https://www.youtube.com/embed/tmkzqYFSS0M?si=KygGTW98-6MR9-VH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div> 
+        <div class="images">
+            <a href="./strategic-dashboard.png" target="_blank"> 
+                <img src="./strategic-dashboard.png" alt="Strategic Government Dashboard" width="1000" height="auto">
+            </a>
+            <a href="./operational-dashboard.png" target="_blank"> 
+                <img src="./operational-dashboard.png" alt="Operational Real Estate Dashboard" width="1000" height="auto">
+            </a>
+        </div>   
+    </div>
+    <div class="outro">
+        <p>This thesis emphasizes the significance of data analysis and visualization in the digital era, focusing on creating a Data Warehouse using Airbnb data to understand market trends. By developing strategic and operational dashboards with Tableau, the project supports informed decision-making for both ministries and investors, enabling them to track market fluctuations and identify investment opportunities. The analysis reveals insights into Airbnb listings across Greece, with the Aegean Islands being the most expensive and popular. It also highlights accommodation quality, pricing patterns, and categorizes listings based on metrics like ratings and revenue, offering valuable information for the growth and regulation of the short-term rental sector in Greece.</p>
+        <p>Important links:</p>
+        <ul>
+            <li><a href="./Airbnb Listings Greece.sql" target="_blank">SQL</a></li>
+            <li><a href="./Thesis-Stavroula Pratti.pdf" target="_blank">Thesis</a></li>
+        </ul>
+    </div>     
+</body>
+</html>
