@@ -42,11 +42,18 @@ h3 {
 
 /* Name Styling */
 .name > p {
-    position: absolute;
-    top: 300px;
-    right: 150px;
     font-weight: bold;
     color: #50394c;
+    text-align: right; 
+    margin-top: 20px; /* Add space above the text */
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 300px) {
+    .name > p {
+        font-size: 1.2rem; /* Adjust text size for mobile */
+        margin-top: 15px; /* Adjust space for smaller screens */
+    }
 }
 
 /* Warehouse Styling */
@@ -89,3 +96,4 @@ ul > li {
     margin-top: 2%;
     font-style: italic;
 }
+
